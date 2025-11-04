@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avoid Boxes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        #start-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        #start-btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #start-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* 게임 캔버스는 기본적으로 숨김 */
+        canvas {
+            display: none;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- 시작 화면 -->
+    <div id="start-screen">
+        <h1>Avoid Boxes</h1>
+        <p>게임의 규칙은 간단합니다! 떨어지는 박스를 피하면서 최대한 오래 살아남으세요!</p>
+        <p>게임을 시작하려면 아래의 시작 버튼을 클릭하세요.</p>
+        <p>난이도는 쉬움, 보통, 어려움, 하드코어, 지옥 모드가 있습니다. 게임 시작 시 플레이 하고 싶은 모드를 영어로 쓰세요.</p>
+        <p>하드코어 모드는 목숨이 1개입니다, 지옥 모드는 하드코어 난이도와 거의 동일하지만(헬 모드는 하드모드 보다 박스 떨어지는 속도가 더 빠르다.) 아이템들이 생성되지 않고 20초마다 레이저가 발사됩니다.</p>
+        <p>스페이스바(space bar)를 누르면 다크 모드로 바꿀수 있습니다. 화이트/다크 모드 변경 가능</p>
+        <button id="start-btn">게임 시작</button>
+    </div>
+
+    <!-- 게임 캔버스 -->
+    <canvas id="gameCanvas" width="400" height="500"></canvas>
+
+    <script>
+        document.getElementById("start-btn").addEventListener("click", function() {
+            // 시작 화면 숨기기
+            document.getElementById("start-screen").style.display = "none";
+            // 캔버스 보이기
+            document.getElementById("gameCanvas").style.display = "block";
+
+            // 게임 스크립트 불러오기
+            const script = document.createElement("script");
+            script.src = "js/avoid_boxes.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+</html>
